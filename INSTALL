@@ -1,0 +1,12 @@
+This solution was build and tested using dircaster in a Excito b3 server.
+
+
+1. Download Dircaster from http://www.dircaster.org/downloads.html
+
+2. Set up Dircaster in your web server (ex: /www/b3caster/)
+
+3. Set up a folder for the scripts (downloader.sh, caster_zones.sh, etc.)
+
+4. Make the proper changes in all the .sh and .conf files
+
+5. Add b3caster.sh to cron or run it manually
