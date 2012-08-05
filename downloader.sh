@@ -1,11 +1,19 @@
 #!/bin/bash
 
 #===============================================================================
+# downloader.sh
+#
 # DESCRIPTION:  A simple podcast fetcher based on http://lincgeek.org/bashpodder
 # My take was based on Farhad's (http://slexy.org/view/s2MxMjFIYN)
+#
 #===============================================================================
 
-podcastdir="/storage/b3caster" # ==== change this
+# get config variables
+runningscript=`basename "$0"`
+basedir=`echo "$0" | awk -F"$runningscript" '{ print $1 }'`
+configdir=$basedir/config
+. $configdir/b3caster.conf
+
 mkdir -p $podcastdir
 
 if [ -f "${podcastdir}/downloaded.tmp" ] ; then
@@ -24,7 +32,7 @@ while read line; do
             wget -t 10 -c -O "$podcastdir/$podcastname/$filename" "$file"
         fi
     done
-done < urls.conf
+done < $configdir/urls.conf
 
 cat $podcastdir/downloaded.log >> $podcastdir/downloaded.tmp
 sort -u $podcastdir/downloaded.tmp | uniq > $podcastdir/downloaded.log
