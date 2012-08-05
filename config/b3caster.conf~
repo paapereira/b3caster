@@ -1,0 +1,12 @@
+#===============================================================================
+# b3caster.conf
+#
+# Configuration variables for b3caster.
+#
+#===============================================================================
+
+dircaster=/www/b3caster/
+podcastdir=/storage/b3caster
+link=http://yoursite/b3caster/
+
+#eof
