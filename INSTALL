@@ -1,12 +1,53 @@
-This solution was build and tested using dircaster in a Excito b3 server.
+This solution was build and tested in a Excito b3 server.
 
 
-1. Download Dircaster from http://www.dircaster.org/downloads.html
+1. Download a working copy of b3caster
 
-2. Set up Dircaster in your web server (ex: /www/b3caster/)
+2. Copy the zip file to your server
 
-3. Set up a folder for the scripts (downloader.sh, caster_zones.sh, etc.)
+       scp Downloads/b3caster.zip yourserver:/home/user/downloads/
 
-4. Make the proper changes in all the .sh and .conf files
+3. ssh (or gui) to yourserver
 
-5. Add b3caster.sh to cron or run it manually
+4. Be root (or sudo or how you are setup)
+
+       $ su
+
+5. Unzip
+
+       # unzip paapereira-b3caster-0c79b3a.zip
+
+6. Make a folder for the shell scripts and copy files
+
+       # mkdir /home/user/b3caster
+       # cp  /home/user/downloads/b3caster/*.sh /home/user/b3caster
+       # cp -R /home/user/downloads/b3caster/config/ /home/user/b3caster
+
+7. Make a folder visible on your web server and copy files
+
+       # mkdir /www/b3caster
+       # cp -R /home/user/downloads/b3caster/DirCaster/* /www/b3caster/
+
+8. Change the config file to reflect your folders
+
+       # vi /home/user/b3caster/config/b3caster.conf
+
+9. Add your Caster Zones
+
+       # vi /home/user/b3caster/config/caster_zones.conf
+
+10. Add your podcasts
+
+       # vi /home/user/b3caster/config/urls.conf
+
+11. Add podcasts to your Caster Zones
+
+       # vi /home/user/b3caster/config/subscriptions.conf
+
+12. Run for the first time
+
+       # /home/user/b3caster/b3caster.sh
+
+13. Add to cron
+
+       00 06 * * * /home/user/b3caster/b3caster.sh
