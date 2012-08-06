@@ -43,7 +43,7 @@ while read line; do
     imagefile=$(echo "$line" | cut -d';' -f3)
 
     # create a config file for this caster zone
-    cp $dircaster$configinctemplate $dircaster$configinc
+    cp $configinctemplate $dircaster$configinc
     cat $dircaster$configinc | \
       sed "s/REPLACE_TITLE/$title/g" | \
       sed "s/REPLACE_LINK/$(echo $link$dircasterfile | sed -e 's/\\/\\\\/g' -e 's/\//\\\//g' -e 's/&/\\\&/g')/g" | \
@@ -51,15 +51,15 @@ while read line; do
       sed "s/REPLACE_IMAGE_FILE/$(echo $linkimage$imagefile | sed -e 's/\\/\\\\/g' -e 's/\//\\\//g' -e 's/&/\\\&/g')/g" \
       > $dircaster${configinc}.tmp
     mv $dircaster${configinc}.tmp $dircaster${configinc}
-    chown www-data:www-data $dircaster${configinc} $dirpodcasts$dirimages$imagefile
-    chmod 750 $dircaster${configinc} $dirpodcasts$dirimages$imagefile
+    chown www-data:www-data $dircaster${configinc} $dircaster$dirimages$imagefile
+    chmod 750 $dircaster${configinc} $dircaster$dirimages$imagefile
 
     # create a dircaster for this caster zone
-    cp $dircaster$dircastertemplate $dircaster$dircaster
-    cat $dircaster$dircaster | sed "s/REPLACE_CONFIG_INC.PHP/$configinc/g" > $dircaster${dircaster}.tmp
-    mv $dircaster${dircaster}.tmp $dircaster${dircaster}
-    chown www-data:www-data $dircaster${dircaster}
-    chmod 750 $dircaster${dircaster}
+    cp $dircastertemplate $dircaster$dircasterfile
+    cat $dircaster$dircasterfile | sed "s/REPLACE_CONFIG_INC.PHP/$configinc/g" > $dircaster${dircasterfile}.tmp
+    mv $dircaster${dircasterfile}.tmp $dircaster$dircasterfile
+    chown www-data:www-data $dircaster$dircasterfile
+    chmod 750 $dircaster$dircasterfile
 
     # create a dir for this caster zone podcasts
     mkdir -p $dircaster$dirpodcasts$dirpodcastsprefix$(echo "$line" | cut -d';' -f1)

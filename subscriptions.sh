@@ -27,7 +27,7 @@ while read line; do
   if ! [[ "${line:0:1}" = "#" ]] ; then
 
     dircasterzone=$dircasterpodcasts$podcastdirprefix$(echo "$line" | cut -d';' -f1)
-    podcast=$podcastdir$(echo "$line" | cut -d';' -f2)
+    podcast=$podcastdir/$(echo "$line" | cut -d';' -f2)
 
     rsync -auv $podcast/ $dircasterzone
 
