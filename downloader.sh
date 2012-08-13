@@ -37,4 +37,7 @@ done < $configdir/urls.conf
 cat $podcastdir/downloaded.log >> $podcastdir/downloaded.tmp
 sort -u $podcastdir/downloaded.tmp | uniq > $podcastdir/downloaded.log
 
+chown -R nobody:users $podcastdir/*
+chmod -R u+rw,g+rw,o+r $podcastdir/*
+
 #eof

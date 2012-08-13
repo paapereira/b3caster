@@ -34,7 +34,7 @@
 
   ini_set('allow_call_time_pass_reference', 1);
   //error_reporting(0);
-
+  
   // Post/Get Parameter check
   $goodParam = 1;
   if ( isSet( $_GET ) ){ // for later versions of PHP
@@ -44,15 +44,6 @@
       if ( strPos( strToLower( $sftypes ) , strToLower( $t ) ) === False ){
         $goodParam = 0;
       }
-      $sftypes = "(." . strToLower($useft) . ")";
-    }else{
-      if ( isSet( $HTTP_GET_VARS ) ){ //for earlier versions of php
-        if ( !empty( $HTTP_GET_VARS['ft'] ) ){
-          $useft = $HTTP_GET_VARS['ft'];
-          $t = '.' . $useft;
-          if ( strPos( strToLower( $sftypes ) , strToLower( $t ) ) === False ){
-            $goodParam = 0;
-          }
       $sftypes = "(." . strToLower($useft) . ")";
     }else{
       if ( isSet( $HTTP_GET_VARS ) ){ //for earlier versions of php
@@ -245,7 +236,7 @@
     }
 
     // item author
-   if ( $aItems[ 'author' ] == '' ){
+    if ( $aItems[ 'author' ] == '' ){
       $author = $ownerEmailTAG;
       $author = htmlentities($author);
     }else{
@@ -424,7 +415,7 @@
     list($dur_hour, $dur_minute, $dur_second) = explode(":", $duration);
     $dur_total_seconds = $dur_second;
     $dur_total_seconds += $dur_minute * 60;
-    $dur_total_seconds += $dur_hour * 3600;
+    $dur_total_seconds += $dur_hour * 3600;	
     $duration = gmdate("H:i:s", $dur_total_seconds);
     // end - item duration - by Jarod 2007=11
 
@@ -494,7 +485,7 @@
     // Strip non-text characters
     $fixed = str_replace("&","&#38;", $text);
     $fixed = str_replace("<","&#60;",$fixed);
-    $fixed = str_replace("Â©","&#169;",$fixed);
+    $fixed = str_replace("©","&#169;",$fixed);
     $outText = str_replace(">","&#62;",$fixed);
     return $outText;
   }
@@ -650,7 +641,7 @@ $diskdir = $mp3Dir . '/';
     foreach ( $aLines as $line_num => $line ) {
       $line = trim( $line );
 
-     //ignore comments
+      //ignore comments
       if ( subStr( $line, 0, 1 ) == '#' ){
         continue;
       }
@@ -671,7 +662,7 @@ $diskdir = $mp3Dir . '/';
             break;
           case  '[commentText]':
             $aItems[ 'commentText' ] = $str;
-           break;
+            break;
           case '[pubDate]':
             $aItems[ 'pubDate'] = $str;
             break;
