@@ -29,10 +29,14 @@ while read line; do
     dircasterzone=$dircasterpodcasts$podcastdirprefix$(echo "$line" | cut -d';' -f1)
     podcast=$podcastdir/$(echo "$line" | cut -d';' -f2)
 
-    rsync -auv --delete $podcast/ $dircasterzone
+    rsync \
+      --verbose --recursive --times --perms --links --archive --checksum \
+      --update --delete --delete-excluded \
+      $podcast/ \
+      $dircasterzone
 
     chown -R www-data:www-data $dircasterzone/*
-    chmod -R 750 $dircasterzone/*
+    chmod -R 775 $dircasterzone/*
 
   fi
 done < $configdir/subscriptions.conf
