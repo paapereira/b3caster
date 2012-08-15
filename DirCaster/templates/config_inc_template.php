@@ -49,7 +49,7 @@
   // Set the "maxFeeds" variable to the number of podcasts you want displayed
   // in the feed when it is accessed... in this way, you can limit the number
   // shown, speeding up execution.
-  $maxFeeds         = "25";
+  $maxFeeds         = "250";
   // Set the "enclosurePrefix" variable to allow redirect bia another site
   // Such as a stats analysis via an external provider, such as
   // Raw Voice Media's TechPodcasts
